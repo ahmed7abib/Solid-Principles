@@ -1,4 +1,4 @@
-package single_responsbility.violation_scenario;
+package single_responsbility.sales_example.violation_scenario;
 
 import java.util.ArrayList;
 import java.util.List;

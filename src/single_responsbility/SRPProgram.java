@@ -1,7 +1,7 @@
 package single_responsbility;
 
-import single_responsbility.best_practice.Item;
-import single_responsbility.best_practice.ShoppingFacade;
+import single_responsbility.sales_example.best_practice.Item;
+import single_responsbility.sales_example.best_practice.ShoppingFacade;
 
 import java.util.ArrayList;
 import java.util.List;
