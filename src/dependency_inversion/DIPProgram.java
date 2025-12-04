@@ -1,12 +1,12 @@
 package dependency_inversion;
 
-import dependency_inversion.best_practice.Gmail;
-import dependency_inversion.best_practice.Hotmail;
-import dependency_inversion.violation_scenario.Notifications;
+import dependency_inversion.good.Gmail;
+import dependency_inversion.good.Hotmail;
+import dependency_inversion.violation.Notifications;
 
 public class DIPProgram {
 
-    public static void dipDemo() {
+    public static void main(String[] args) {
 
         System.out.println("------------ VIOLATION EXAMPLE ----------------\n");
 
@@ -16,12 +16,12 @@ public class DIPProgram {
 
         System.out.println("\n------------ Best Practice EXAMPLE ----------------\n");
 
-        dependency_inversion.best_practice.Notifications notifications1;
+        dependency_inversion.good.Notifications notifications1;
 
-        notifications1 = new dependency_inversion.best_practice.Notifications(new Gmail());
+        notifications1 = new dependency_inversion.good.Notifications(new Gmail());
         notifications1.sendEmail();
 
-        notifications1 = new dependency_inversion.best_practice.Notifications(new Hotmail());
+        notifications1 = new dependency_inversion.good.Notifications(new Hotmail());
         notifications1.sendEmail();
     }
 }

@@ -1,12 +1,12 @@
 package open_closed;
 
-import open_closed.best_practice.Head;
-import open_closed.best_practice.Manager;
-import open_closed.best_practice.RegularEmployee;
+import open_closed.good.Head;
+import open_closed.good.Manager;
+import open_closed.good.RegularEmployee;
 
 public class OCPProgram {
 
-    public static void ocpDemo() {
+    public static void main(String[] args) {
         Manager manager = new Manager(1, "Ahmed", 50000);
         Head head = new Head(2, "Mohamed", 30000);
         RegularEmployee regularEmployee = new RegularEmployee(3, "Sami", 10000);
