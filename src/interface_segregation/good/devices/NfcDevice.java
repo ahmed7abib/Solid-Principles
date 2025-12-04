@@ -6,7 +6,7 @@ import interface_segregation.good.executor.ISectorReader;
 
 public class NfcDevice implements IMemoryReader, ISectorReader {
 
-    public Executors getCapabilities() {
+    public Executors getExecutors() {
         return new Executors.Builder()
                 .withSectorReader(this)
                 .withMemoryReader(this)

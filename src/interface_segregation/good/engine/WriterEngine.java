@@ -15,11 +15,11 @@ public class WriterEngine implements IWriter {
         iMemoryWriter = executors.getMemoryWriter();
 
         if (iApduExecutor == null) {
-            throw new Exception("WriterEngine not support IApduExecutor");
+            throw new Exception("Cant run apdu command.");
         }
 
         if (iMemoryWriter == null) {
-            throw new Exception("WriterEngine not support IMemoryWriter");
+            throw new Exception("Cant write memory blocks.");
         }
     }
 

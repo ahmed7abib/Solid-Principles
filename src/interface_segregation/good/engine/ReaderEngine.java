@@ -18,15 +18,15 @@ public class ReaderEngine implements IReader {
         iApduExecutor = executors.getApduExecutor();
 
         if (iSectorReader == null) {
-            throw new Exception("ReaderEngine not support ISectorReader");
+            throw new Exception("Cant read sector zero.");
         }
 
         if (iMemoryReader == null) {
-            throw new Exception("ReaderEngine not support IMemoryReader");
+            throw new Exception("Cant read this block.");
         }
 
         if (iApduExecutor == null) {
-            throw new Exception("ReaderEngine not support IApduExecutor");
+            throw new Exception("Cant run apdu command.");
         }
     }
 
