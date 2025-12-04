@@ -1,7 +1,7 @@
 package interface_segregation.good.engine;
 
+import interface_segregation.good.executor.Executors;
 import interface_segregation.good.executor.IApduExecutor;
-import interface_segregation.good.executor.IDeviceExecutor;
 import interface_segregation.good.executor.IMemoryWriter;
 
 public class WriterEngine implements IWriter {
@@ -9,9 +9,10 @@ public class WriterEngine implements IWriter {
     private final IApduExecutor iApduExecutor;
     private final IMemoryWriter iMemoryWriter;
 
-    public WriterEngine(IDeviceExecutor iDeviceExecutor) throws Exception {
-        iApduExecutor = iDeviceExecutor.getExecutor().getiApduExecutor();
-        iMemoryWriter = iDeviceExecutor.getExecutor().getiMemoryWriter();
+    public WriterEngine(Executors executors) throws Exception {
+
+        iApduExecutor = executors.getApduExecutor();
+        iMemoryWriter = executors.getMemoryWriter();
 
         if (iApduExecutor == null) {
             throw new Exception("WriterEngine not support IApduExecutor");

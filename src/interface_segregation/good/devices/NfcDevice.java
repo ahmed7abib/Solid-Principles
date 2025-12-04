@@ -1,18 +1,16 @@
-package interface_segregation.good.executor.devices;
+package interface_segregation.good.devices;
 
 import interface_segregation.good.executor.Executors;
-import interface_segregation.good.executor.IDeviceExecutor;
 import interface_segregation.good.executor.IMemoryReader;
 import interface_segregation.good.executor.ISectorReader;
 
-public class NfcDevice implements IDeviceExecutor, IMemoryReader, ISectorReader {
+public class NfcDevice implements IMemoryReader, ISectorReader {
 
-    @Override
-    public Executors getExecutor() {
-        Executors executors = new Executors();
-        executors.setISectorReader(this);
-        executors.setISectorReader(this);
-        return executors;
+    public Executors getCapabilities() {
+        return new Executors.Builder()
+                .withSectorReader(this)
+                .withMemoryReader(this)
+                .build();
     }
 
     @Override

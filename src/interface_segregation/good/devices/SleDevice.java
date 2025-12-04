@@ -1,18 +1,16 @@
-package interface_segregation.good.executor.devices;
+package interface_segregation.good.devices;
 
 import interface_segregation.good.executor.Executors;
-import interface_segregation.good.executor.IDeviceExecutor;
 import interface_segregation.good.executor.IMemoryReader;
 import interface_segregation.good.executor.ISectorReader;
 
-public class SleDevice implements IDeviceExecutor, ISectorReader, IMemoryReader {
+public class SleDevice implements  ISectorReader, IMemoryReader {
 
-    @Override
-    public Executors getExecutor() {
-        Executors executors = new Executors();
-        executors.setISectorReader(this);
-        executors.setIMemoryReader(this);
-        return executors;
+    public Executors getExecutors() {
+        return new Executors.Builder()
+                .withSectorReader(this)
+                .withMemoryReader(this)
+                .build();
     }
 
     @Override

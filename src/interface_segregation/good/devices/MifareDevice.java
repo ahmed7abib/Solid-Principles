@@ -1,19 +1,17 @@
-package interface_segregation.good.executor.devices;
+package interface_segregation.good.devices;
 
 import interface_segregation.good.executor.Executors;
 import interface_segregation.good.executor.IApduExecutor;
-import interface_segregation.good.executor.IDeviceExecutor;
 import interface_segregation.good.executor.IMemoryWriter;
 
 
-public class MifareDevice implements IDeviceExecutor, IApduExecutor, IMemoryWriter {
+public class MifareDevice implements IApduExecutor, IMemoryWriter {
 
-    @Override
-    public Executors getExecutor() {
-        Executors executors = new Executors();
-        executors.setIApduExecutor(this);
-        executors.setIMemoryWriter(this);
-        return executors;
+    public Executors getExecutors() {
+        return new Executors.Builder()
+                .withApduExecutor(this)
+                .withMemoryWriter(this)
+                .build();
     }
 
     @Override

@@ -1,7 +1,7 @@
 package interface_segregation.good.engine;
 
+import interface_segregation.good.executor.Executors;
 import interface_segregation.good.executor.IApduExecutor;
-import interface_segregation.good.executor.IDeviceExecutor;
 import interface_segregation.good.executor.IMemoryReader;
 import interface_segregation.good.executor.ISectorReader;
 
@@ -11,11 +11,11 @@ public class ReaderEngine implements IReader {
     private final IMemoryReader iMemoryReader;
     private final IApduExecutor iApduExecutor;
 
-    public ReaderEngine(IDeviceExecutor iDeviceExecutor) throws Exception {
+    public ReaderEngine(Executors executors) throws Exception {
 
-        iSectorReader = iDeviceExecutor.getExecutor().getiSectorReader();
-        iMemoryReader = iDeviceExecutor.getExecutor().getiMemoryReader();
-        iApduExecutor = iDeviceExecutor.getExecutor().getiApduExecutor();
+        iSectorReader = executors.getSectorReader();
+        iMemoryReader = executors.getMemoryReader();
+        iApduExecutor = executors.getApduExecutor();
 
         if (iSectorReader == null) {
             throw new Exception("ReaderEngine not support ISectorReader");

@@ -2,8 +2,8 @@ package interface_segregation;
 
 import interface_segregation.good.engine.ReaderEngine;
 import interface_segregation.good.engine.WriterEngine;
-import interface_segregation.good.executor.devices.MifareDevice;
-import interface_segregation.good.executor.devices.SleDevice;
+import interface_segregation.good.devices.MifareDevice;
+import interface_segregation.good.devices.SleDevice;
 
 public class ISPProgram {
 
@@ -12,13 +12,13 @@ public class ISPProgram {
         WriterEngine writerEngine;
 
         try {
-            readerEngine = new ReaderEngine(new SleDevice());
+            readerEngine = new ReaderEngine(new SleDevice().getExecutors());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         try {
-            writerEngine = new WriterEngine(new MifareDevice());
+            writerEngine = new WriterEngine(new MifareDevice().getExecutors());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

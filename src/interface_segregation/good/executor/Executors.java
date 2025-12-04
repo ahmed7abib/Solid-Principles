@@ -1,41 +1,64 @@
 package interface_segregation.good.executor;
 
+
 public class Executors {
 
-    private IApduExecutor iApduExecutor;
-    private IMemoryReader iMemoryReader;
-    private IMemoryWriter iMemoryWriter;
-    private ISectorReader iSectorReader;
+    private final ISectorReader sectorReader;
+    private final IMemoryReader memoryReader;
+    private final IMemoryWriter memoryWriter;
+    private final IApduExecutor apduExecutor;
 
-    public void setIApduExecutor(IApduExecutor iApduExecutor) {
-        this.iApduExecutor = iApduExecutor;
+    private Executors(Builder builder) {
+        this.sectorReader = builder.sectorReader;
+        this.memoryReader = builder.memoryReader;
+        this.memoryWriter = builder.memoryWriter;
+        this.apduExecutor = builder.apduExecutor;
     }
 
-    public void setIMemoryReader(IMemoryReader iMemoryReader) {
-        this.iMemoryReader = iMemoryReader;
+    public ISectorReader getSectorReader() {
+        return sectorReader;
     }
 
-    public void setIMemoryWriter(IMemoryWriter iMemoryWriter) {
-        this.iMemoryWriter = iMemoryWriter;
+    public IMemoryReader getMemoryReader() {
+        return memoryReader;
     }
 
-    public void setISectorReader(ISectorReader iSectorReader) {
-        this.iSectorReader = iSectorReader;
+    public IMemoryWriter getMemoryWriter() {
+        return memoryWriter;
     }
 
-    public IApduExecutor getiApduExecutor() {
-        return iApduExecutor;
+    public IApduExecutor getApduExecutor() {
+        return apduExecutor;
     }
 
-    public IMemoryReader getiMemoryReader() {
-        return iMemoryReader;
-    }
+    public static class Builder {
+        private ISectorReader sectorReader;
+        private IMemoryReader memoryReader;
+        private IMemoryWriter memoryWriter;
+        private IApduExecutor apduExecutor;
 
-    public IMemoryWriter getiMemoryWriter() {
-        return iMemoryWriter;
-    }
+        public Builder withSectorReader(ISectorReader r) {
+            this.sectorReader = r;
+            return this;
+        }
 
-    public ISectorReader getiSectorReader() {
-        return iSectorReader;
+        public Builder withMemoryReader(IMemoryReader r) {
+            this.memoryReader = r;
+            return this;
+        }
+
+        public Builder withMemoryWriter(IMemoryWriter w) {
+            this.memoryWriter = w;
+            return this;
+        }
+
+        public Builder withApduExecutor(IApduExecutor e) {
+            this.apduExecutor = e;
+            return this;
+        }
+
+        public Executors build() {
+            return new Executors(this);
+        }
     }
 }
