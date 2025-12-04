@@ -8,10 +8,22 @@ import interface_segregation.good.executor.devices.SleDevice;
 public class ISPProgram {
 
     public static void main(String[] args) {
-        ReaderEngine readerEngine = new ReaderEngine(new SleDevice());
-        readerEngine.read();
+        ReaderEngine readerEngine;
+        WriterEngine writerEngine;
 
-        WriterEngine writerEngine = new WriterEngine(new MifareDevice());
+        try {
+            readerEngine = new ReaderEngine(new SleDevice());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            writerEngine = new WriterEngine(new MifareDevice());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        readerEngine.read();
         writerEngine.write(new byte[]{0x00, 0x22});
     }
 }
