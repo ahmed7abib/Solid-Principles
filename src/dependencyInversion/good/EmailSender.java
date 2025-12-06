@@ -1,10 +1,10 @@
 package dependencyInversion.good;
 
-public class Notifications {
+public class EmailSender {
 
     private final IMail iMail;
 
-    public Notifications(IMail iMail) {
+    public EmailSender(IMail iMail) {
         this.iMail = iMail;
     }
 

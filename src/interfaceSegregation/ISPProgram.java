@@ -4,6 +4,8 @@ import interfaceSegregation.good.engine.ReaderEngine;
 import interfaceSegregation.good.engine.WriterEngine;
 import interfaceSegregation.good.devices.MifareDevice;
 
+import java.util.Arrays;
+
 
 public class ISPProgram {
 
@@ -13,14 +15,16 @@ public class ISPProgram {
 
         try {
             readerEngine = new ReaderEngine(new MifareDevice().getExecutors());
-            readerEngine.read();
+            byte[] buffer = readerEngine.read();
+            System.out.println(Arrays.toString(buffer));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         try {
             writerEngine = new WriterEngine(new MifareDevice().getExecutors());
-            writerEngine.write(new byte[]{0x00, 0x22});
+            boolean writeSuccess = writerEngine.write(new byte[]{0x00, 0x22});
+            System.out.println(writeSuccess);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

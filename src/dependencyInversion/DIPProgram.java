@@ -2,7 +2,7 @@ package dependencyInversion;
 
 import dependencyInversion.good.Gmail;
 import dependencyInversion.good.Hotmail;
-import dependencyInversion.violation.Notifications;
+import dependencyInversion.violation.EmailSender;
 
 public class DIPProgram {
 
@@ -10,18 +10,18 @@ public class DIPProgram {
 
         System.out.println("------------ VIOLATION EXAMPLE ----------------\n");
 
-        Notifications notifications = new Notifications();
-        notifications.senGmailNotification();
-        notifications.sendHotmailNotification();
+        EmailSender emailSender = new EmailSender();
+        emailSender.senGmailNotification();
+        emailSender.sendHotmailNotification();
 
         System.out.println("\n------------ Best Practice EXAMPLE ----------------\n");
 
-        dependencyInversion.good.Notifications notifications1;
+        dependencyInversion.good.EmailSender emailSender1;
 
-        notifications1 = new dependencyInversion.good.Notifications(new Gmail());
-        notifications1.sendEmail();
+        emailSender1 = new dependencyInversion.good.EmailSender(new Gmail());
+        emailSender1.sendEmail();
 
-        notifications1 = new dependencyInversion.good.Notifications(new Hotmail());
-        notifications1.sendEmail();
+        emailSender1 = new dependencyInversion.good.EmailSender(new Hotmail());
+        emailSender1.sendEmail();
     }
 }
